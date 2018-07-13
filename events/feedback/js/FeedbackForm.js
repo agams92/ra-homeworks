@@ -1,14 +1,28 @@
 'use strict';
 
+function checkField(key) {
+    if(key === 'salutation') return 'Обращение';
+    else if(key === 'name') return 'Имя';
+    else if(key === 'email') return 'Почта';
+    else if(key === 'subject') return 'Тема';
+    else if(key === 'message') return 'Сообщение';
+    else return 'Бонус';
+}
+
 const FeedbackForm = ({data, onSubmit}) => {
-    const dataToSend = JSON.stringify(data)
+    let form;
     function handleButtonClick (event) {
         event.preventDefault();
+        let dataToSend = '';
+        const formData = new FormData(form);
+        for(const [key,value] of formData) {
+            const field = checkField(key);
+            dataToSend += `${field}: ${value} \n`
+        }
         onSubmit(dataToSend)
     }
-    console.log(dataToSend);
     return(
-        <form className="content__form contact-form">
+        <form className="content__form contact-form" ref={element => form = element}>
             <div className="testing">
                 <p>Чем мы можем помочь?</p>
             </div>
@@ -60,8 +74,8 @@ const NameField = ({name}) => {
 const EmailField = ({email}) => {
     return(
         <div className="contact-form__input-group">
-            <label className="contact-form__label" htmlFor="name">Имя</label>
-            <input className="contact-form__input contact-form__input--text" id="name" name="name" type="text" defaultValue={email}/>
+            <label className="contact-form__label" htmlFor="email">Адрес электронной почты</label>
+            <input className="contact-form__input contact-form__input--email" id="email" name="email" type="email" defaultValue={email}/>
         </div>
     );
 }
