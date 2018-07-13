@@ -13,32 +13,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <script type="text/babel" src="./js/FeedbackForm.js"></script>
-  <script type="text/babel">
-    const form = {
-      salutation: 'Мисис',
-      name: 'Алевтина',
-      subject: 'У меня важный вопрос',
-      message: 'Как оформить доставку?',
-      email: 'mis@test.co',
-      snacks: ['пирог']
-    };
-
-    function App() {
-      let output;
-      return (
-        <section className="content">
-          <h1 className="content__heading">Отправить нам сообщение</h1>
-          <p className="content__lede">Используйте эту простую форму чтобы связаться с нами.</p>
-          <FeedbackForm data={form} onSubmit={data => output.value = data} />
-          <output ref={field => output = field} />
-        </section>
-      );
-    }
-
-    ReactDOM.render(
-      <App />,
-      document.getElementById('root')
-    );
-  </script>
+  <script type="text/babel" src="./js/App.js"></script>
 </body>
 </html>
