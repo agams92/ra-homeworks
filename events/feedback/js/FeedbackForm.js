@@ -17,7 +17,7 @@ const FeedbackForm = ({data, onSubmit}) => {
         const formData = new FormData(form);
         for(const [key,value] of formData) {
             const field = checkField(key);
-            dataToSend += `${field}: ${value} \n`
+            dataToSend += `${field}: ${value}; `
         }
         onSubmit(dataToSend)
     }
