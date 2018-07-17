@@ -41,7 +41,6 @@ class App extends React.Component {
 
   changeView(){
     this.state.icon === VIEW_MODULE ? this.setState({icon: VIEW_LIST}) : this.setState({icon: VIEW_MODULE});
-    console.log(this.state.icon)
   }
 
   render() {
