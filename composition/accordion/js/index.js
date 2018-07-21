@@ -3,11 +3,12 @@
 class Accordion extends React.Component {
     render() {
         const {content, title} = this.props;
-        const sectionsToRender = content.map(section => {
-            return(
-                <AccordionSection content={section} />
-            );
-        })
+        const listLength = this.props.listLength ? this.props.listLength : content.length;
+        const sectionsToRender = [];
+        for(let i = 0; i < listLength; i++) {
+            sectionsToRender.push(<AccordionSection content={content[i]} />);
+        }
+
         return(
             <main className='main'>
                 <h2 className='title'>{title}</h2>
