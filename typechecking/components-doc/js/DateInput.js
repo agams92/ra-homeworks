@@ -16,8 +16,8 @@ DateInput.defaultProps = {
 
 DateInput.propTypes = {
   value: (props, propName, componentName) => {
-    if (/\d+\-\d+\-\d/g.test(props[propName])) return null;
-    return new Error(`Invalid '${propName}' in '${componentName}. Expected 'xxxx-xx-xx'.`);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(props[propName])) return null;
+    return new Error(`Invalid '${propName}' in '${componentName}'. Expected 'xxxx-xx-xx'.`);
   }
 }
 
