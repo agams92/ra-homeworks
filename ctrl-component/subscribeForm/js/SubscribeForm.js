@@ -24,7 +24,6 @@ class Form extends React.Component {
 
     render() {
         const validClass = this.state.value ? 'is-valid' : 'is-error';
-
         return(
             <form className={`form form--subscribe ${validClass}`}>
                     <h4 className="form-title">Подписаться:</h4>
