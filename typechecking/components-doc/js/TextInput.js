@@ -12,6 +12,10 @@ const TextInput = props => {
 
 
 TextInput.propTypes = {
+  label: PropTypes.oneOf(['Email', 'Имя', 'Фамилия', 'Пароль']),
+  type: PropTypes.oneOf(['text', 'email', 'password']),
+  name: PropTypes.oneOf(['email', 'first_name', 'last_name', 'password']),
+  onChange: PropTypes.func,
   value: (props, propName, componentName) => {
     if (props.type === 'email') {
       if (!(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(props[propName]))) {

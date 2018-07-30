@@ -15,6 +15,9 @@ DateInput.defaultProps = {
 }
 
 DateInput.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.oneOf(['birthday']),
+  onChange: PropTypes.func,
   value: (props, propName, componentName) => {
     if (/^\d{4}-\d{2}-\d{2}$/.test(props[propName])) return null;
     return new Error(`Invalid '${propName}' in '${componentName}'. Expected 'xxxx-xx-xx'.`);
