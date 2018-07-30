@@ -2,8 +2,12 @@
 
 class App extends React.Component {
     render() {
-        const tabs = [ {name: '/', descr: 'Рефераты'}, {name:'/creator', descr: 'Криэйтор'}, {name:'/fortune', descr: 'Гадалка'}];
-        const tabsToRender = tabs.map(tab => <NavLink exact className="tabs__item" to={tab.name} activeClassName='tabs__item-active'>{tab.descr}</NavLink>);
+        const tabs = [ {path: '/', descr: 'Рефераты'}, {path:'/creator', descr: 'Криэйтор'}, {path:'/fortune', descr: 'Гадалка'}];
+        const tabsToRender = tabs.map(tab => {
+            let exact;
+            if (tab.path === '/') exact = true;
+            return <NavLink exact ={exact} className="tabs__item" to={tab.path} activeClassName='tabs__item-active'>{tab.descr}</NavLink>
+        });
         return(
             <Router>
                 <div className="tabs">
