@@ -9,6 +9,7 @@ class SearchBox extends React.Component {
 
   componentDidMount() {
     this.searchBox = document.querySelector('.search-box');
+    this.header = document.querySelector('.header');
     this.isFixed()
     window.addEventListener('scroll', this.setPosition);
   }
@@ -18,7 +19,8 @@ class SearchBox extends React.Component {
   }
 
   isFixed() {
-    if (this.searchBox.getBoundingClientRect().y <= 0) return true;
+    const headerBounds = this.header.getBoundingClientRect();
+    if (this.searchBox.getBoundingClientRect().y <= 0 && headerBounds.height < headerBounds.y * -1) return true;
     return false;
   }
 
