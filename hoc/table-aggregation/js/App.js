@@ -31,24 +31,26 @@ const SortedTable = sortList(SortTable, 'sort')
 
 function sortList (Component, type) {
     function changeList (list) {
-        const sortedList = list.map(item => {
-            if (type === 'month') {
+        list.sort(compareDates);
+        if (type === 'month' || type == 'year') {
+            const sortedList = list.map(item => {
                 const month = new Date(item.date).toLocaleDateString('en-US', {month: 'short'});
-                return {month: month, amount: item.amount}
-            } else if (type === 'year') {
                 const year = new Date(item.date).getFullYear();
-                return {year: year, amount: item.amount}
-            } else { 
-                return item;
-            }
-        })
-        if (type === 'sort') {
-            sortedList.sort(compateDates);
+                if (type === 'month') return {month: month, amount: item.amount}
+                else return {year: year, amount: item.amount}
+            })
+
+            return sortedList.reduce((accum,item) => {
+                const checkIndex = accum.findIndex(itemToFind => itemToFind[type] === item[type]);
+                if (checkIndex != -1) accum[checkIndex].amount += item.amount;
+                else accum.push(item);
+                return accum;
+            }, []);
         }
-        return sortedList;
+        return list;
     }
 
-    function compateDates(a,b) {
+    function compareDates(a,b) {
         const first = new Date(a.date).getTime();
         const second = new Date(b.date).getTime();
         return first - second;
